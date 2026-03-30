@@ -1,15 +1,20 @@
 1. Set Up Azure Resources
+
+
+
    
 1.	Create a Resource Group
 •	Log in to Azure Portal: Go to Azure Portal and sign in with your credentials.
 •	Navigate to Resource Groups: In the left-hand menu, select Resource Groups (or search for it in the search bar).
 •	Create New Resource Group: Click the + Create button.
 
-1.	Subscription: Choose the subscription.
-   Resource Group Name: Enter a unique name.
-   Region: Select the desired region for the group.
-	Review and Create: Review the details, click Review + Create, then click Create to finalize.
-   Verify: Confirm the resource group is listed under Resource Groups.
+Subscription: Choose the subscription.
+Resource Group Name: Enter a unique name.
+Region: Select the desired region for the group.
+Review and Create: Review the details, click Review + Create, then click Create to finalize.
+Verify: Confirm the resource group is listed under Resource Groups.
+
+
 
 2. Create an Azure Storage Container
 Azure Blob Storage is used to store application logs.
@@ -24,15 +29,18 @@ Click Create.
 •	Public Access Level: Private (default).
 
 
-4.	Upload the application logs to the container using Azure Portal, Azure CLI, or Azure Storage Explorer.
 
+
+3.	Upload the application logs to the container using Azure Portal, Azure CLI, or Azure Storage Explorer.
 Set Up Azure Databricks Workspace
 Log in to Azure Portal: Go to Azure Portal.
 Navigate to Databricks: Search for and select Azure Databricks.
 Click + Create: Start the workspace creation process.
 
 
-5.	Fill in Details:
+
+
+4.	Fill in Details:
 Subscription: Student
 Resource Group: ImageClass
 Workspace Name: ImageCls
@@ -41,7 +49,11 @@ Pricing Tier: Standard
 Review and Create: Click Review + Create, then Create.
 Access Workspace: Once deployed, click Launch Workspace to start using Azure Databricks.
 
-4.	Create a Databricks Cluster
+
+
+
+
+5.	Create a Databricks Cluster
 Access Databricks Workspace: Log in to your Azure Databricks workspace.
 Navigate to Clusters: In the left-hand menu, click Clusters.
 Create Cluster: Click + Create Cluster.
@@ -55,7 +67,11 @@ Worker/Driver Count: Single node (Student version- only single node is allowed)
 Create: Click Create Cluster to launch.
 Wait for Activation: Wait for the cluster to start (status: Running).
 
-5. Mount Azure Blob Storage in Databricks
+
+
+
+
+6. Mount Azure Blob Storage in Databricks
 Prepare Storage Details:
 Storage Account Name:imageclsstorage
 Container Name:input
@@ -65,7 +81,11 @@ Open a Notebook: Navigate to Workspace and create or open a notebook.
 Run Mount Command: Use the following code to mount the storage:
 Use the Mount: Access the mounted blob storage using /mnt/mycontainer.
 
-6.  Preprocessing and Training in Databricks
+
+
+
+
+7.  Preprocessing and Training in Databricks
 1.Import Libraries:
 •	SparkSession from pyspark.sql to initialize the Spark session.
 •	tensorflow as tf for deep learning functionalities.
@@ -73,20 +93,19 @@ Use the Mount: Access the mounted blob storage using /mnt/mycontainer.
 •	Model, Sequential, Dense, Flatten, Dropout from tensorflow.keras.models and tensorflow.keras.layers for building the neural network.
 •	EarlyStopping from tensorflow.keras.callbacks for early stopping during training.
 •	os for operating system functionalities.
-
 2.	Initialize Spark Session:
 •	Create a Spark session named "ImageClassification".
-
 3.	Define Paths to Datasets:
 •	Specify paths to datasets stored in Databricks File System (DBFS).
-
 4.	Define Categories:
 •	List the categories for image classification.
 
 
 
 
-7. Model Training and Evaluation
+
+
+8. Model Training and Evaluation
 This section focuses on training the image classification model using the preprocessed data and evaluating its performance.
 Steps:
 Model Architecture:
@@ -107,7 +126,12 @@ Model Saving:
 •	Save the trained model for future use.
 
 
-8. Visualize Training and Validation Results
+
+
+
+
+
+9. Visualize Training and Validation Results
 This section focuses on visualizing the training and validation results to evaluate the performance of the model.
 Steps:
 Import Libraries:
@@ -119,7 +143,12 @@ Generate Plots:
 •	Use the plot_results function to visualize the accuracy and loss for each dataset.
 •	Display the plots to compare the training and validation metrics.
 
-9. Model Evaluation and Testing
+
+
+
+
+
+10. Model Evaluation and Testing
 This section focuses on evaluating and testing the saved model to assess its performance on unseen data.
 Steps:
 Load the Saved Model:
@@ -140,7 +169,11 @@ Display Confusion Matrix:
 •	Generate a confusion matrix to visualize the performance of the model.
 •	Use Seaborn to create a heatmap of the confusion matrix, displaying the true labels on the y-axis and the predicted labels on the x-axis.
 
-10.Model deployment as real time end point
+
+
+
+
+11.Model deployment as real time end point
 Register the Model**:
 The model logged with MLflow is automatically registered in the Azure ML Model Registry.
 Create a Real-Time Endpoint:
@@ -148,8 +181,10 @@ Create a Real-Time Endpoint:
    2. Go to Models > Select the registered model.
    3. Click Deploy > Real-Time Endpoint.
 
+   
 
-11. Endpoint testing
+
+12. Endpoint testing
 
 Steps:
 1. Image Data Preparation for Model Inference
