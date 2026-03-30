@@ -3,7 +3,7 @@
 
 
    
-1.	Create a Resource Group
+Create a Resource Group
 •	Log in to Azure Portal: Go to Azure Portal and sign in with your credentials.
 •	Navigate to Resource Groups: In the left-hand menu, select Resource Groups (or search for it in the search bar).
 •	Create New Resource Group: Click the + Create button.
@@ -15,8 +15,7 @@ Review and Create: Review the details, click Review + Create, then click Create 
 Verify: Confirm the resource group is listed under Resource Groups.
 
 
-
-2. Create an Azure Storage Container
+Create an Azure Storage Container
 Azure Blob Storage is used to store application logs.
 Navigate to Storage Accounts in Azure Portal.
 Click Create.
@@ -30,8 +29,7 @@ Click Create.
 
 
 
-
-3.	Upload the application logs to the container using Azure Portal, Azure CLI, or Azure Storage Explorer.
+Upload the application logs to the container using Azure Portal, Azure CLI, or Azure Storage Explorer.
 Set Up Azure Databricks Workspace
 Log in to Azure Portal: Go to Azure Portal.
 Navigate to Databricks: Search for and select Azure Databricks.
@@ -39,8 +37,7 @@ Click + Create: Start the workspace creation process.
 
 
 
-
-4.	Fill in Details:
+Fill in Details:
 Subscription: Student
 Resource Group: ImageClass
 Workspace Name: ImageCls
@@ -50,10 +47,7 @@ Review and Create: Click Review + Create, then Create.
 Access Workspace: Once deployed, click Launch Workspace to start using Azure Databricks.
 
 
-
-
-
-5.	Create a Databricks Cluster
+Create a Databricks Cluster
 Access Databricks Workspace: Log in to your Azure Databricks workspace.
 Navigate to Clusters: In the left-hand menu, click Clusters.
 Create Cluster: Click + Create Cluster.
@@ -70,8 +64,7 @@ Wait for Activation: Wait for the cluster to start (status: Running).
 
 
 
-
-6. Mount Azure Blob Storage in Databricks
+Mount Azure Blob Storage in Databricks
 Prepare Storage Details:
 Storage Account Name:imageclsstorage
 Container Name:input
@@ -84,28 +77,25 @@ Use the Mount: Access the mounted blob storage using /mnt/mycontainer.
 
 
 
-
-7.  Preprocessing and Training in Databricks
-1.Import Libraries:
+Preprocessing and Training in Databricks
+Import Libraries:
 •	SparkSession from pyspark.sql to initialize the Spark session.
 •	tensorflow as tf for deep learning functionalities.
 •	ImageDataGenerator from tensorflow.keras.preprocessing.image for image augmentation.
 •	Model, Sequential, Dense, Flatten, Dropout from tensorflow.keras.models and tensorflow.keras.layers for building the neural network.
 •	EarlyStopping from tensorflow.keras.callbacks for early stopping during training.
 •	os for operating system functionalities.
-2.	Initialize Spark Session:
+Initialize Spark Session:
 •	Create a Spark session named "ImageClassification".
-3.	Define Paths to Datasets:
+Define Paths to Datasets:
 •	Specify paths to datasets stored in Databricks File System (DBFS).
-4.	Define Categories:
+Define Categories:
 •	List the categories for image classification.
 
 
 
 
-
-
-8. Model Training and Evaluation
+Model Training and Evaluation
 This section focuses on training the image classification model using the preprocessed data and evaluating its performance.
 Steps:
 Model Architecture:
@@ -130,8 +120,7 @@ Model Saving:
 
 
 
-
-9. Visualize Training and Validation Results
+Visualize Training and Validation Results
 This section focuses on visualizing the training and validation results to evaluate the performance of the model.
 Steps:
 Import Libraries:
@@ -145,10 +134,7 @@ Generate Plots:
 
 
 
-
-
-
-10. Model Evaluation and Testing
+Model Evaluation and Testing
 This section focuses on evaluating and testing the saved model to assess its performance on unseen data.
 Steps:
 Load the Saved Model:
@@ -172,8 +158,7 @@ Display Confusion Matrix:
 
 
 
-
-11.Model deployment as real time end point
+Model deployment as real time end point
 Register the Model**:
 The model logged with MLflow is automatically registered in the Azure ML Model Registry.
 Create a Real-Time Endpoint:
@@ -184,26 +169,26 @@ Create a Real-Time Endpoint:
    
 
 
-12. Endpoint testing
+Endpoint testing
 
 Steps:
-1. Image Data Preparation for Model Inference
+Image Data Preparation for Model Inference
 This step involves defining functions to preprocess single or multiple images for inference. The images are resized to a target size, normalized, and prepared for input into a trained model.
-2. Preprocess Images
+Preprocess Images
 •	Function preprocess_image: Preprocesses a single image by resizing it to the target dimensions, normalizing pixel values, and adding a batch dimension.
 •	Function preprocess_images: Processes a list of image paths by applying the preprocess_image function to each image and returning a batch of preprocessed image arrays.
-3. Model Scoring via Databricks API
+Model Scoring via Databricks API
 This step defines a function to score a model by sending inference requests to a Databricks API endpoint. The function converts the input data into the required format, sends a POST request with authentication, and returns the prediction results from the model.
-4. Create JSON Payload
+Create JSON Payload
 •	Function create_tf_serving_json: Converts the input data into a JSON payload suitable for TensorFlow Serving.
-5. Define Scoring Function
+Define Scoring Function
 •	Function score_model: Takes a dataset as input, converts it into the required JSON format, sends a POST request to the Databricks API endpoint with the JSON payload and authentication headers, and returns the prediction results.
-6. Set Up API Endpoint and Authentication
+Set Up API Endpoint and Authentication
 •	Specify the URL of the Databricks API endpoint.
 •	Use an environment variable to securely store and access the Databricks token for authentication.
 7. Handle API Response
 •	Check the status code of the response.
 •	Raise an exception if the request fails, otherwise return the prediction results.
-8. Call the Scoring Function
+Call the Scoring Function
 •	Use the score_model function to send the preprocessed image data to the Databricks API endpoint and print the predictions.
-9. The predictions with highest prediction score is mapped to a label.
+The predictions with highest prediction score is mapped to a label.
